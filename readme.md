@@ -1,72 +1,82 @@
-# Ronco Morphogenetic License (RML v1.0)
-
-**Copyright © 2025 Mitchell Ronco / Datacette**
-
 # RMGPA
-Roncos Morphogenetic Programming Architecture
 
+**Ronco's Morphogenetic Programming Architecture**  
+_A living, evolving software system inspired by biological development._
 
+## 🧬 Overview
 
----
+RMGPA is a new programming paradigm that models software as dynamic, self-organizing systems—mirroring cells, tissues, and morphogenetic fields found in biology.
 
-## 📘 Definitions
+This architecture introduces:
 
-- **Software**: This project, including its source code, compiled forms, documentation, and derivative works.
-- **Organization**: Any legal entity — corporation, academic institution, non-profit, etc.
-- **Gross Revenue**: Total annual revenue generated from any product, service, or system that uses the Software.
-- **Internal Use**: Non-revenue-generating usage within a company (e.g., research, HR, ops).
-- **Revenue-Generating System**: Any product, service, or tool that earns revenue and utilizes the Software.
+- **Cells** with identity, memory, roles, and internal organelles
+- **Morphogenetic Fields** that guide structural and behavioral development
+- **Goal-driven behavior** for declarative reasoning
+- **Self-healing and regenerative** mechanisms
+- **Domain-Specific Language (DSL)** support for intuitive goal declaration and structural control
 
----
+## 🚀 Getting Started
 
-## 🧾 License Terms
+### Prerequisites
 
-### ✅ Free Use
-You may use, copy, and modify this Software **free of charge** for:
+- [.NET SDK](https://dotnet.microsoft.com/download)
+- [VS Code](https://code.visualstudio.com/) with the [Ionide-fsharp extension](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp)
 
-- Personal use
-- Academic or research use
-- Internal or infrastructure use
-- Commercial prototyping — as long as no revenue is earned
+### Build & Run
 
-### 💼 Commercial Use
-If you use this Software in a revenue-generating product or service, the following applies:
+Clone the repository and run the console app:
 
-- **No license required** for products generating **< $10M/year**
-- **Minimum license fee**: $30,000 (USD)
-- **Standard rate**: 0.25% of gross revenue attributable to the Software
-- **Maximum cap**: $200,000 (USD) per organization
+```
+git clone https://github.com/Peidyen/RMGPA.git
+cd RMGPA
+dotnet run --project RMGPA.CLI
+```
 
-#### 💡 Example Licensing Fees
+Expected output:
 
-| Annual Revenue Using the Software | License Fee             |
-|-----------------------------------|--------------------------|
-| <$10M                             | Free                    |
-| $10M–$12M                         | $30,000 (minimum fee)   |
-| $20M                              | $50,000                 |
-| $80M+                             | $200,000 (max cap)      |
+```
+Cell cell-001 maintaining energy >= 0.800000
+```
 
----
+## 🧠 Core Concepts
 
-## 🔖 Attribution
+| Concept                 | Description |
+|-------------------------|-------------|
+| **Cell**                | A self-contained computational unit with role, state, and organelles |
+| **Organelle**           | Functional component inside a cell (e.g., memory, control logic) |
+| **Morphogenetic Field** | A gradient-based or topological field that shapes development |
+| **Goal**                | Declarative target or condition that cells evaluate and act upon |
+| **Regenerative Memory** | Persistent structures used to rebuild and heal broken cells or tissues |
 
-You must credit **Mitchell Ronco** and **Datacette** in documentation, product pages, or about sections when the Software is used.
+## 📁 Project Structure
 
----
+```
+RMGPA/
+├── RMGPA.Core/        # Core framework: cells, goals, evaluation logic
+├── RMGPA.CLI/         # Console runner and entry point
+├── LICENSE.txt        # Ronco Morphogenetic License (RML v1.0)
+└── README.md          # This file
+```
 
-## 🚫 Warranty Disclaimer
+## 📜 License
 
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+This project is released under the **Ronco Morphogenetic License (RML v1.0)**.  
+See [LICENSE.txt](LICENSE.txt) for full terms and usage conditions.
 
----
+## 🌟 Author
 
-## 📩 Licensing Contact
+**Mitchell Ronco**  
+Datacette
 
-**For commercial licensing:**  
-📧 licensing@datacette.org
+## 💬 Contributions
 
----
+This project is in early-stage development and not currently accepting contributions.  
+Feedback and ideas are welcome via GitHub issues or forks.
 
-We believe in wide adoption, deep thinking, and fair compensation.  
-This license keeps innovation free — and aligns value with value.
-"""
+## 🧭 Roadmap
+
+- [x] Core cell + evaluator structure  
+- [ ] DSL parsing for goals  
+- [ ] Morphogenetic field simulation engine  
+- [ ] Self-healing / regeneration logic  
+- [ ] Visualization via web or UI layer
