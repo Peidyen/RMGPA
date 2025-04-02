@@ -1,0 +1,14 @@
+D:\Source\RMGPA\RMGPA.Core\bin\Debug\net9.0\RMGPA.Core.deps.json
+D:\Source\RMGPA\RMGPA.Core\bin\Debug\net9.0\RMGPA.Core.dll
+D:\Source\RMGPA\RMGPA.Core\bin\Debug\net9.0\RMGPA.Core.pdb
+D:\Source\RMGPA\RMGPA.Core\bin\Debug\net9.0\RMGPA.Core.xml
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.fsproj.AssemblyReference.cache
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.AssemblyInfoInputs.cache
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.AssemblyInfo.fs
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.fsproj.CoreCompileInputs.cache
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.sourcelink.json
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.dll
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\refint\RMGPA.Core.dll
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.xml
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\RMGPA.Core.pdb
+D:\Source\RMGPA\RMGPA.Core\obj\Debug\net9.0\ref\RMGPA.Core.dll
