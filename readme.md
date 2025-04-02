@@ -80,3 +80,20 @@ Feedback and ideas are welcome via GitHub issues or forks.
 - [ ] Morphogenetic field simulation engine  
 - [ ] Self-healing / regeneration logic  
 - [ ] Visualization via web or UI layer
+
+
+## 📄 Patent
+
+This project is based on concepts described in the following provisional patent application:
+
+**Title of Invention:**  
+*Ronco's Morphogenetic Programming: A Multi-Scale, Goal-Driven Structural Computing Paradigm*
+
+**Status:**  
+Provisional patent application filed with the United States Patent and Trademark Office (USPTO).  
+Pending formal review and approval.
+
+**Inventor:** Mitchell Ronco  
+**Filing Date: 01 April 2025
+
+
