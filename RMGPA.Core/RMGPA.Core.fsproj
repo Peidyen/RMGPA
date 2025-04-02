@@ -6,9 +6,8 @@
   </PropertyGroup>
 
 <ItemGroup>
-  <Compile Include="Types.fs" />
-  <Compile Include="Field.fs" />
-  <Compile Include="Evaluator.fs" />
+  <Compile Include="Cell.fs" />
+  <Compile Include="Tissue.fs" />
 </ItemGroup>
 
 </Project>
