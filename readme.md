@@ -2,8 +2,8 @@ Notice: This software is protected by a provisional patent application filed wit
 
 
 # Ronco Morphogenetic License (RML v1.0)
-**Copyright © 2025 Mitchell Ronco / Datacette**
 
+**Copyright © 2025 Mitchell Ronco / Datacette**
 
 # RMGPA
 Roncos Morphogenetic Programming Architecture
