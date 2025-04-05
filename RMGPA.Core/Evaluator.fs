@@ -8,3 +8,4 @@ let interpretGoal (cell: Cell) (goal: Goal) =
         printfn "Cell %s maintaining %s >= %f" cell.Id metric threshold
     | Achieve (target, value) ->
         printfn "Cell %s trying to achieve %s = %A" cell.Id target value
+chrome

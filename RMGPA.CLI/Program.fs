@@ -6,7 +6,11 @@ module Main =
     open RMGPA.Core
     open RMGPA.Core.Tissue
 
-    // Generate 100 cells in a 10x10 grid
+    // Clear the terminal for animation effect
+    let clearScreen () =
+        Console.Clear()
+
+    // Generate a 10x10 grid of cells
     let generateGridCells () =
         [ for x in 0..9 do
             for y in 0..9 ->
@@ -49,23 +53,13 @@ module Main =
                 printf "%c " symbol
             printfn ""
 
-    // Print memory summaries
-    let printMemorySummary cells =
-        printfn "\nMemory States:"
-        cells
-        |> List.iter (fun c ->
-            let cpu =
-                match c.Memory |> Map.tryFind "cpu_cycles" with
-                | Some(:? int as i) -> string i
-                | _ -> "-"
-            printfn "%s: cpu_cycles = %s" c.Id cpu)
-
     // Simulate evolution over ticks
     let runSimulation cells ticks =
         let rec loop currentCells tick =
             if tick > ticks then currentCells
             else
-                printfn "\n--- Tick %d ---\n" tick
+                clearScreen ()
+                printfn "--- Tick %d ---\n" tick
                 let updated =
                     currentCells
                     |> List.map (fun cell ->
@@ -73,13 +67,12 @@ module Main =
                         |> List.fold (fun c o -> o.Execute c) cell)
 
                 renderGrid updated
-                printMemorySummary updated
-                System.Threading.Thread.Sleep(500)
+                System.Threading.Thread.Sleep(150)
                 loop updated (tick + 1)
         loop cells 1
 
     [<EntryPoint>]
     let main _ =
         let cells = generateGridCells ()
-        let _ = runSimulation cells 10
+        let _ = runSimulation cells 100
         0
