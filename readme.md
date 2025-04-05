@@ -1,12 +1,13 @@
-🛡️ **Status: Patent Pending**  
-This software and framework are protected under a provisional patent filed with the United States Patent and Trademark Office (USPTO).
+Notice: This software is protected by a provisional patent application filed with the United States Patent and Trademark Office. Patent pending. © 2025 Mitchell Ronco.
+
 
 # Ronco Morphogenetic License (RML v1.0)
-
 **Copyright © 2025 Mitchell Ronco / Datacette**
+
 
 # RMGPA
 Roncos Morphogenetic Programming Architecture
+
 
 
 ---
