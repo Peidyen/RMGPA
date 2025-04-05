@@ -1,3 +1,6 @@
+Notice: This software is protected by a provisional patent application filed with the United States Patent and Trademark Office. Patent pending. © 2025 Mitchell Ronco.
+
+
 # Ronco Morphogenetic License (RML v1.0)
 
 **Copyright © 2025 Mitchell Ronco / Datacette**
