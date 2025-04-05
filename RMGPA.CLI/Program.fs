@@ -1,60 +1,85 @@
-﻿open System
-open RMGPA.Core
-open RMGPA.Core.Tissue
-open RMGPA.Core.Tissue.Exports
+﻿namespace RMGPA.CLI
 
-// Inline Evaluator stub (normally would live in Evaluator.fs)
-module Evaluator =
-    let interpretGoal (cell: Cell) (goal: obj) =
-        printfn "Evaluating goal for cell %s with goal: %O" cell.Id goal
-        cell
+module Main =
 
-// Map Role to ASCII symbol
-let roleToChar = function
-    | Role.Control -> 'C'
-    | Role.Processor -> 'P'
-    | Role.Memory -> 'M'
-    | Role.Sensor -> 'S'
+    open System
+    open RMGPA.Core
+    open RMGPA.Core.Tissue
 
-// Generate 100 cells in a 10x10 grid
-let generateGridCells () =
-    [ for x in 0..9 do
-        for y in 0..9 ->
-            let loc = Grid(x, y)
-            let role =
-                if x = y then Role.Control
-                elif (x + y) % 4 = 0 then Role.Memory
-                elif (x + y) % 5 = 0 then Role.Sensor
-                else Role.Processor
+    // Generate 100 cells in a 10x10 grid
+    let generateGridCells () =
+        [ for x in 0..9 do
+            for y in 0..9 ->
+                let loc = Grid(x, y)
+                let role =
+                    if x = y then Role.Control
+                    elif (x + y) % 4 = 0 then Role.Memory
+                    elif (x + y) % 5 = 0 then Role.Sensor
+                    else Role.Processor
 
-            { Id = Guid.NewGuid().ToString()
-              Role = role
-              Location = loc
-              Memory = Map.empty
-              Organelles = [ processor; memory; signal ] } ]
+                { Id = Guid.NewGuid().ToString()
+                  Role = role
+                  Location = loc
+                  Memory = Map.empty
+                  Organelles = [ processor; memory; signal ] } ]
 
-// Render the tissue as ASCII
-let renderGrid cells =
-    for y in 0..9 do
-        for x in 0..9 do
-            let roleChar =
-                cells
-                |> List.tryFind (fun c -> c.Location = Grid(x, y))
-                |> Option.map (fun c -> roleToChar c.Role)
-                |> Option.defaultValue '.'
-            printf "%c " roleChar
-        printfn ""
+    // Convert memory (cpu_cycles) into a shaded ASCII character
+    let memoryToChar cell =
+        let cycles =
+            match cell.Memory |> Map.tryFind "cpu_cycles" with
+            | Some(:? int as i) -> i
+            | _ -> 0
 
-[<EntryPoint>]
-let main _ =
-    let cells = generateGridCells ()
+        match cycles with
+        | 0 -> '·'
+        | 1 | 2 -> '░'
+        | 3 | 4 | 5 -> '▒'
+        | 6 | 7 | 8 | 9 -> '▓'
+        | _ -> '█'
 
-    // Evaluate a simple goal for each cell
-    cells
-    |> List.iter (fun cell -> Evaluator.interpretGoal cell (box "Maintain energy") |> ignore)
+    // Render the tissue as ASCII heatmap of CPU activity
+    let renderGrid cells =
+        for y in 0..9 do
+            for x in 0..9 do
+                let symbol =
+                    cells
+                    |> List.tryFind (fun c -> c.Location = Grid(x, y))
+                    |> Option.map memoryToChar
+                    |> Option.defaultValue '.'
+                printf "%c " symbol
+            printfn ""
 
-    // Visualize as ASCII grid
-    printfn "\nMorphogenetic Tissue Layout:\n"
-    renderGrid cells
+    // Print memory summaries
+    let printMemorySummary cells =
+        printfn "\nMemory States:"
+        cells
+        |> List.iter (fun c ->
+            let cpu =
+                match c.Memory |> Map.tryFind "cpu_cycles" with
+                | Some(:? int as i) -> string i
+                | _ -> "-"
+            printfn "%s: cpu_cycles = %s" c.Id cpu)
 
-    0
+    // Simulate evolution over ticks
+    let runSimulation cells ticks =
+        let rec loop currentCells tick =
+            if tick > ticks then currentCells
+            else
+                printfn "\n--- Tick %d ---\n" tick
+                let updated =
+                    currentCells
+                    |> List.map (fun cell ->
+                        cell.Organelles
+                        |> List.fold (fun c o -> o.Execute c) cell)
+
+                renderGrid updated
+                printMemorySummary updated
+                System.Threading.Thread.Sleep(500)
+                loop updated (tick + 1)
+        loop cells 1
+
+    [<EntryPoint>]
+    let main _ =
+        let cells = generateGridCells ()
+        let _ = runSimulation cells 10
+        0
