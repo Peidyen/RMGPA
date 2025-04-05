@@ -9,7 +9,6 @@ This software and framework are protected under a provisional patent filed with 
 Roncos Morphogenetic Programming Architecture
 
 
-
 ---
 
 ## 📘 Definitions
