@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("RMGPA.CLI")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0974f78985489b9fad87af00cafb61cfda4ff1fc")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e0545a6023d32f204502ff805affb69559760ac")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("RMGPA.CLI")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("RMGPA.CLI")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

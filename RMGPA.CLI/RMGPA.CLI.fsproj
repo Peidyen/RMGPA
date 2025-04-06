@@ -5,12 +5,9 @@
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="Program.fs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\RMGPA.Core\RMGPA.Core.fsproj" />
-  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\RMGPA.Core\RMGPA.Core.fsproj" />
+  <Compile Include="Program.fs" /> <!-- Always last -->
+</ItemGroup>
 
 </Project>

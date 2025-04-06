@@ -1,21 +1,33 @@
 namespace RMGPA.Core
 
-type Role =
+type OrganelleKind =
     | Processor
     | Memory
+    | Signal
+
+type Role =
+    | Processor
     | Sensor
     | Control
 
-type Organelle =
-    { Kind: string
-      State: obj }
+type Location = int * int
 
-type Cell =
-    { Id: string
-      Role: Role
-      Memory: Map<string, obj>
-      Organelles: Organelle list }
+type Organelle = {
+    Kind: OrganelleKind
+    Name: string
+    Execute: Cell -> Cell
+}
 
-type Goal =
-    | Maintain of string * float
-    | Achieve of string * obj
+and Cell = {
+    Id: string
+    Role: Role
+    Location: Location
+    Memory: Map<string, obj>
+    Organelles: Organelle list
+}
+
+
+
+type Layout =
+    | Grid of width: int * height: int
+    | Chain of int

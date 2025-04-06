@@ -6,8 +6,11 @@
   </PropertyGroup>
 
 <ItemGroup>
-  <Compile Include="Cell.fs" />
+  <Compile Include="Types.fs" />
+  <Compile Include="OrganelleFactory.fs" />
+  <Compile Include="Genome.fs" />
   <Compile Include="Tissue.fs" />
 </ItemGroup>
+
 
 </Project>
