@@ -1,72 +1,101 @@
 namespace RMGPA.Core
 
-open System
 
+
+open System
+open System.Collections.Generic
+
+// ========================================
+// Tissue Model
+// ========================================
 module Tissue =
 
-    open RMGPA.Core
+    type Grid = Grid of int * int
 
+    type Role =
+        | Control
+        | Memory
+        | Sensor
+        | Processor
+
+    type Organelle =
+        { Name: string
+          Execute: Cell -> Cell }
+
+    and Cell =
+        { Id: string
+          Role: Role
+          Location: Grid
+          Memory: Map<string, obj>
+          Organelles: Organelle list }
+
+    // Example organelles
     let processor =
-        { Kind = OrganelleKind.Processor
-          Name = "ALU-1"
+        { Name = "Processor"
           Execute = fun cell ->
-              let updatedMem =
-                  cell.Memory
-                  |> Map.change "cpu_cycles" (fun c ->
-                      let current =
-                          match c with
-                          | Some o ->
-                              match o :?> obj with
-                              | :? int as i -> i
-                              | _ -> 0
-                          | None -> 0
-                      Some(box (current + 1)))
-              { cell with Memory = updatedMem } }
+              let cycles =
+                  match Map.tryFind "cpu_cycles" cell.Memory with
+                  | Some(:? int as i) -> i + 1
+                  | _ -> 1
+              { cell with Memory = cell.Memory.Add("cpu_cycles", box cycles) } }
 
     let memory =
-        { Kind = OrganelleKind.Memory
-          Name = "MemCore-1"
-          Execute = fun cell ->
-              let updatedMem =
-                  cell.Memory
-                  |> Map.add "recent_input" (box 42)
-              { cell with Memory = updatedMem } }
+        { Name = "Memory"
+          Execute = fun cell -> cell } // placeholder logic
 
     let signal =
-        { Kind = OrganelleKind.Signal
-          Name = "NetLink-1"
-          Execute = fun cell ->
-              printfn "Cell %s emits signal 'ping'" cell.Id
-              cell }
+        { Name = "Signal"
+          Execute = fun cell -> cell } // placeholder logic
 
-    let buildCellFromOrganelles id role location organelles =
-        { Id = id
-          Role = role
-          Location = location
-          Memory = Map.empty
-          Organelles = organelles }
+// ========================================
+// Simulation Engine (used in both CLI & UI)
+// ========================================
+module SimulationEngine =
 
-    type Tissue =
-        { Name: string
-          Cells: Cell list }
+    open Tissue
 
-    let buildTissue name =
-        let locations = [ for x in 0..4 do for y in 0..4 -> Grid(x, y) ]
-        let cells =
-            locations
-            |> List.map (fun loc ->
+    let generateGridCells () =
+        [ for x in 0..9 do
+            for y in 0..9 ->
+                let loc = Grid(x, y)
                 let role =
-                    match loc with
-                    | Grid(2, 2) -> Role.Control
-                    | Grid(x, y) when (x + y) % 4 = 0 -> Role.Memory
-                    | Grid(x, y) when (x + y) % 5 = 0 -> Role.Sensor
-                    | _ -> Role.Processor
+                    if x = y then Role.Control
+                    elif (x + y) % 4 = 0 then Role.Memory
+                    elif (x + y) % 5 = 0 then Role.Sensor
+                    else Role.Processor
 
-                let organelles = [ processor; memory; signal ]
-                buildCellFromOrganelles (Guid.NewGuid().ToString()) role loc organelles)
-        { Name = name; Cells = cells }
+                { Id = Guid.NewGuid().ToString()
+                  Role = role
+                  Location = loc
+                  Memory = Map.empty
+                  Organelles = [ processor; memory; signal ] } ]
 
-    module Exports =
-        let processor = processor
-        let memory = memory
-        let signal = signal
+    let step (cells: Cell list) =
+        cells
+        |> List.map (fun cell ->
+            cell.Organelles
+            |> List.fold (fun c o -> o.Execute c) cell)
+
+    let memoryToChar cell =
+        let cycles =
+            match cell.Memory |> Map.tryFind "cpu_cycles" with
+            | Some(:? int as i) -> i
+            | _ -> 0
+
+        match cycles with
+        | 0 -> '·'
+        | 1 | 2 -> '░'
+        | 3 | 4 | 5 -> '▒'
+        | 6 | 7 | 8 | 9 -> '▓'
+        | _ -> '█'
+
+    let renderGrid (cells: Cell list) : string =
+        let grid =
+            [ for y in 0..9 ->
+                [ for x in 0..9 ->
+                    cells
+                    |> List.tryFind (fun c -> c.Location = Grid(x, y))
+                    |> Option.map memoryToChar
+                    |> Option.defaultValue '.' ]
+                |> System.String.Concat ]
+        String.Join("\n", grid)
