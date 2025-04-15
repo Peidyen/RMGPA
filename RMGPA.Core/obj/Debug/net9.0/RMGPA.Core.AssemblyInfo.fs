@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("RMGPA.Core")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bfc7cdedec78426afa43fb1c5eb3356b95f7b2e")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a6d64abf98e68f89eda012aaed2a947247abe6a")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("RMGPA.Core")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("RMGPA.Core")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

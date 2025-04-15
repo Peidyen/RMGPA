@@ -8,7 +8,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" Height="600">
             <TextBlock Name="OutputText"
                        FontFamily="Consolas"
-                       FontSize="12"
+                       FontSize="50"
                        Padding="10"
                        TextWrapping="Wrap"/>
         </ScrollViewer>
